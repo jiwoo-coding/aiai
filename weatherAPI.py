@@ -71,6 +71,6 @@ def load(start, code):
 
     column_list=['location','date','avg_temperature(C)','daily_rain(mm)','avg_wind(m/s)','avg_r_humidity(%)']
     weather_df=pd.DataFrame(columns=column_list)
-    data_df=Weathers(weather_df, '20100701', enddt, '90', yesterday)
+    data_df=Weathers(weather_df, start, enddt, code, yesterday)
     
     return data_df
