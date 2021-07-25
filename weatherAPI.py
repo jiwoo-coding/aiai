@@ -1,15 +1,17 @@
+'''
+    weatherAPI.load(*start, ***code) 
+    weatherAPI.load2(*start, **final, ***code)  # 시작일, 종료일 설정 가능
+
+    parameter
+    *start : 시작일자 입력 (string) (ex. 20200701)
+    **final : 종료일자 입력 (string) (ex. 20200703)
+    ***code : *날씨별지역코드 폴더에서 코드입력 (string)
+'''
+
 from urllib import parse
 import pandas as pd
 import requests
 import datetime
-
-'''
-    weatherAPI.load(*start, **code) 
-    
-    parameter
-    *start : 시작일자 입력 (string) (ex. 20200701)
-    **code : *날씨별지역코드 폴더에서 코드입력 (string)
-'''
 
 # class로 했어야 했는데 넘나 귀찬..
 def check_null(dic): 
@@ -72,5 +74,19 @@ def load(start, code):
     column_list=['location','date','avg_temperature(C)','daily_rain(mm)','avg_wind(m/s)','avg_r_humidity(%)']
     weather_df=pd.DataFrame(columns=column_list)
     data_df=Weathers(weather_df, start, enddt, code, yesterday)
+    
+    return data_df
+
+def load2(start, final, code):
+    '''
+    parameter
+    *start : 시작일자 입력 (string) (ex. 20200701)
+    **final : 종료일자 입력 (string) (ex. 20200703)
+    ***code : *날씨별지역코드 폴더에서 코드입력 (string)
+    '''
+
+    column_list=['location','date','avg_temperature(C)','daily_rain(mm)','avg_wind(m/s)','avg_r_humidity(%)']
+    weather_df=pd.DataFrame(columns=column_list)
+    data_df=Weathers(weather_df, start, final, code, yesterday)
     
     return data_df
