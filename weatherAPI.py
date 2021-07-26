@@ -26,7 +26,7 @@ def check_null(dic):
     return dic
 
 # 위치, 날짜, 평균기온, 일강수량, 평균풍속, 평균상대습도
-def Weathers(weather_df, startdt, enddt,  station,  yesterday):
+def Weathers(weather_df, startdt, enddt,  station,  yesterday=0):
     try:
         enc_key='xJqcekPN2GS33RwoLWGuWQx9elptv0GMsruCz3/y8J6XNwoMpyxx9x6HxS3UfXxgYtMZ0pSL3jRLhUB7el44Ig=='
         url = 'http://apis.data.go.kr/1360000/AsosDalyInfoService/getWthrDataList?'
@@ -51,7 +51,10 @@ def Weathers(weather_df, startdt, enddt,  station,  yesterday):
             temp['avg_r_humidity(%)']=float(dic['avgRhm'])
             temp_df=pd.DataFrame.from_dict([temp])  # 리스트로 해야하는 것 잊지말자!!
             weather_df=weather_df.append(temp_df, ignore_index=True)
-
+        
+        if yesterday==0:
+            return weather_df
+        
         check_date=datetime.datetime.strptime(weather_df.iloc[-1,1], '%Y%m%d')
         checking=check_date+datetime.timedelta(days=1)
         if (yesterday.year==checking.year) and (yesterday.month==checking.month):
@@ -87,6 +90,6 @@ def load2(start, final, code):
 
     column_list=['location','date','avg_temperature(C)','daily_rain(mm)','avg_wind(m/s)','avg_r_humidity(%)']
     weather_df=pd.DataFrame(columns=column_list)
-    data_df=Weathers(weather_df, start, final, code, yesterday)
+    data_df=Weathers(weather_df, start, final, code)
     
     return data_df
