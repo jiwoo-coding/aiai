@@ -1,1 +1,1 @@
-# aiai
+# Jiwoo-owner AIAI Project
