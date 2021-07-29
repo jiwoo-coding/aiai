@@ -1,4 +1,5 @@
-# AIAI project
+AIAI project
+================
 - AI 확산 방지를 위한 지역별 전염 확률 예측 모델
 
 ### Data Preprocessing
