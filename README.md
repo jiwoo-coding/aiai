@@ -2,6 +2,7 @@ AIAI project
 ============
 - AI 확산 방지를 위한 지역별 전염 확률 예측 모델
 - 선행 연구 자료를 활용하여 독립변수 추출, 이를 통해 지역별 위험 등급 예측 모델 제작
+- Project WBS : NOTION <https://trapezoidal-spinach-1e3.notion.site/596f31867c5a4623a754564ba49cac78?v=8f8e93bb6cdd49febaef28a3655c823d>
 -----------------------------------------------
 
 ### Data Preprocessing
